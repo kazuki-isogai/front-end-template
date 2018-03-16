@@ -4,30 +4,32 @@ program
   .option('-w, --watch')
   .parse(process.argv)
 
-const plugins = require('gulp-load-plugins')({
-  overridePattern: false,
-  pattern: [
-    'ansi-regex',
-    'autoprefixer',
-    'browser-sync',
-    'css-mqpacker',
-    'event-stream',
-    'imagemin-pngquant',
-    'imagemin-webp',
-    'normalize-path',
-    'postcss-assets',
-    'vinyl-named',
-    'webpack',
-    'webpack-stream'
-  ]
-})
-
 const myServer = require('browser-sync').create()
 
 const paths = {
   src: 'src',
   dest: 'public',
   root: ''
+}
+
+const plugins = {
+  options: {
+    overridePattern: false,
+    pattern: [
+      'ansi-regex',
+      'autoprefixer',
+      'browser-sync',
+      'css-mqpacker',
+      'event-stream',
+      'imagemin-pngquant',
+      'imagemin-webp',
+      'normalize-path',
+      'postcss-assets',
+      'vinyl-named',
+      'webpack',
+      'webpack-stream'
+    ]
+  }
 }
 
 const clean = {
