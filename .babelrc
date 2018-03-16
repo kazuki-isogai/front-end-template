@@ -1,8 +1,9 @@
 {
-  "plugins": ["lodash"],
-  "presets": [
-    ["@babel/preset-env", {
-      "modules": false
+  "plugins": [
+    "lodash",
+    ["wildcard", {
+      "noCamelCase": true
     }]
-  ]
+  ],
+  "presets": ["@babel/preset-env"]
 }

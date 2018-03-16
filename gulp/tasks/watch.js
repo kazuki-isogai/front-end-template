@@ -1,25 +1,15 @@
-const gulp = require('gulp')
-const config = require('../config')
-const $ = config.plugins
+import gulp from 'gulp'
+import config from '../config'
+import * as tasks from './*'
 
-const watch = () => {
-  $.watch(config.copy.src.globs, () => {
-    gulp.start('copy')
-  })
+export default function watch () {
+  gulp.watch(config.copy.src.globs, tasks.copy)
 
-  $.watch(config.html.src.globs, () => {
-    gulp.start('html')
-  })
+  gulp.watch(config.html.src.globs, tasks.html)
 
-  $.watch(config.images.src.globs, () => {
-    gulp.start('images')
-  })
+  gulp.watch(config.images.src.globs, tasks.images)
 
-  gulp.start('scripts')
+  tasks.scripts()
 
-  $.watch(config.styles.src.globs, () => {
-    gulp.start('styles')
-  })
+  gulp.watch(config.styles.src.globs, tasks.styles)
 }
-
-gulp.task('watch', watch)

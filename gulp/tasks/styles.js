@@ -1,8 +1,8 @@
-const gulp = require('gulp')
-const config = require('../config')
-const $ = config.plugins
+import gulp from 'gulp'
+import config from '../config'
+import { plugins as $ } from '../global'
 
-const styles = () => {
+export default function styles () {
   return gulp.src(config.styles.src.globs, config.styles.src.options)
     .pipe($.if(config.program.watch, $.plumber({
       errorHandler: $.notify.onError(error => {
@@ -16,13 +16,11 @@ const styles = () => {
       })
     })))
     .pipe($.stylelint({
-      reporters: [
-        {
-          failAfterError: true,
-          formatter: 'string',
-          console: true
-        }
-      ]
+      reporters: [{
+        failAfterError: true,
+        formatter: 'string',
+        console: true
+      }]
     }))
     .pipe($.if(config.env.DEVELOPMENT, $.sourcemaps.init()))
     .pipe($.sassGlob())
@@ -43,5 +41,3 @@ const styles = () => {
     .pipe($.if(config.env.PRODUCTION, gulp.dest(config.paths.dest)))
     .pipe($.if(config.program.watch, config.myServer.stream()))
 }
-
-gulp.task('styles', ['images'], styles)

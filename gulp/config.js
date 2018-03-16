@@ -190,7 +190,7 @@ const copy = {
   }
 }
 
-module.exports = {
+export default {
   env: {
     DEVELOPMENT: process.env.NODE_ENV === 'development',
     PRODUCTION: process.env.NODE_ENV === 'production'

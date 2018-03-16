@@ -1,8 +1,8 @@
-const gulp = require('gulp')
-const config = require('../config')
-const $ = config.plugins
+import gulp from 'gulp'
+import config from '../config'
+import { plugins as $ } from '../global'
 
-const images = () => {
+export default function images () {
   return $.eventStream.merge(
     gulp.src(config.images.src.globs, config.images.src.options)
       .pipe($.if(config.program.watch, $.plumber({
@@ -56,5 +56,3 @@ const images = () => {
     .pipe(gulp.dest(config.paths.dest))
     .pipe($.if(config.program.watch, config.myServer.stream()))
 }
-
-gulp.task('images', images)

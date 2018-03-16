@@ -1,8 +1,8 @@
-const gulp = require('gulp')
-const config = require('../config')
-const $ = config.plugins
+import gulp from 'gulp'
+import config from '../config'
+import { plugins as $ } from '../global'
 
-const html = () => {
+export default function html () {
   return gulp.src(config.html.src.globs, config.html.src.options)
     .pipe($.filter(config.html.filter.pattern))
     .pipe($.if(config.program.watch, $.plumber({
@@ -32,5 +32,3 @@ const html = () => {
     .pipe($.if(config.env.PRODUCTION, gulp.dest(config.paths.dest)))
     .pipe($.if(config.program.watch, config.myServer.stream()))
 }
-
-gulp.task('html', html)

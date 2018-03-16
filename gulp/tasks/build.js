@@ -1,15 +1,12 @@
-const gulp = require('gulp')
-const config = require('../config')
-const runSequence = require('run-sequence')
+import gulp from 'gulp'
+import config from '../config'
+import * as tasks from './*'
 
-const build = done => {
-  runSequence(
-    'clean',
-    ...config.program.watch
-      ? [['copy', 'html', 'images', 'styles'], 'default']
-      : [['copy', 'html', 'images', 'styles', 'scripts']],
-    done
-  )
-}
+const build = gulp.series(
+  tasks.clean,
+  config.program.watch
+    ? gulp.series(gulp.parallel(tasks.copy, tasks.html, tasks.images, tasks.styles), tasks.defaults)
+    : gulp.parallel(tasks.copy, tasks.html, tasks.images, tasks.styles, tasks.scripts)
+)
 
-gulp.task('build', build)
+export default build

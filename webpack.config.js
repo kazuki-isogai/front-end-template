@@ -1,7 +1,6 @@
-const webpack = require('webpack')
-const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
-
-const config = require('./gulp/config')
+import webpack from 'webpack'
+import WebpackBuildNotifierPlugin from 'webpack-build-notifier'
+import config from './gulp/config'
 
 const commonPlugins = []
 
@@ -39,7 +38,7 @@ module.exports = {
         test: /\.js$/,
         use: [
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader?cacheDirectory'
           },
           {
             loader: 'standard-loader'

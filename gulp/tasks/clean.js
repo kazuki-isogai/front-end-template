@@ -1,9 +1,6 @@
-const gulp = require('gulp')
-const config = require('../config')
-const del = require('del')
+import config from '../config'
+import del from 'del'
 
-const clean = () => {
+export default function clean () {
   return del(config.clean.del.patterns, config.clean.del.options)
 }
-
-gulp.task('clean', clean)
