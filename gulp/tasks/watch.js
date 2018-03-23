@@ -1,15 +1,16 @@
 const gulp = require('gulp')
+const config = require('../config')
 
 const watch = () => {
-  gulp.watch('copy')
+  gulp.watch(config.copy.src.globs, 'copy')
 
-  gulp.watch('html')
+  gulp.watch(config.html.src.globs, 'html')
 
-  gulp.watch('images')
+  gulp.watch(config.images.src.globs, 'images')
 
-  // gulp.start('scripts')
+  gulp.task('scripts')()
 
-  gulp.watch('styles')
+  gulp.watch(config.styles.src.globs, 'styles')
 }
 
 gulp.task('watch', watch)

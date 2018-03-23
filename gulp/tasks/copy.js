@@ -2,6 +2,8 @@ const gulp = require('gulp')
 const config = require('../config')
 const $ = config.plugins
 
+console.log(1)
+
 const copy = () => {
   return gulp.src(config.copy.src.globs, config.copy.src.options)
     .pipe($.changed(config.paths.dest))
